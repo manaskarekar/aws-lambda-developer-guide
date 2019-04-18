@@ -2,7 +2,7 @@
 
 A Lambda function written in [Go](https://golang.org/) is authored as a Go executable\. In your Lambda function code, you need to include the [github\.com/aws/aws\-lambda\-go/lambda](https://github.com/aws/aws-lambda-go/tree/master/lambda) package, which implements the Lambda programming model for Go\. In addition, you need to implement handler function code and a `main()` function\. 
 
-```
+```go
 package main
 
 import (
@@ -25,17 +25,17 @@ func main() {
 ```
 
 Note the following:
-+ **package main**: In Go, the package containing `func main()` must always be named `main`\.
-+ **import**: Use this to include the libraries your Lambda function requires\. In this instance, it includes:
-  + **context: **[AWS Lambda Context Object in Go](go-programming-model-context.md)\.
++ **package main:** In Go, the package containing `func main()` must always be named `main`\.
++ **import:** Use this to include the libraries your Lambda function requires\. In this instance, it includes:
+  + **context:** [AWS Lambda Context Object in Go](go-programming-model-context.md)\.
   + **fmt:** The Go [Formatting](https://golang.org/pkg/fmt/) object used to format the return value of your function\.
   + **github\.com/aws/aws\-lambda\-go/lambda:** As mentioned previously, implements the Lambda programming model for Go\.
 + **func HandleRequest\(ctx context\.Context, name MyEvent\) \(string, error\)**: This is your Lambda handler signature and includes the code which will be executed\. In addition, the parameters included denote the following: 
-  + **ctx context\.Context**: Provides runtime information for your Lambda function invocation\. `ctx` is the variable you declare to leverage the information available via [AWS Lambda Context Object in Go](go-programming-model-context.md)\.
-  + **name MyEvent**: An input type with a variable name of `name` whose value will be returned in the `return` statement\.
-  + **string, error**: Returns standard [error](https://golang.org/pkg/builtin/#error) information\. For more information on custom error handling, see [AWS Lambda Function Errors in Go](go-programming-model-errors.md)\.
-  + **return fmt\.Sprintf\("Hello %s\!", name\), nil**: Simply returns a formatted "Hello" greeting with the name you supplied in the handler signature\. `nil` indicates there were no errors and the function executed successfully\.
-+ **func main\(\)**: The entry point that executes your Lambda function code\. This is required\.
+  + **ctx context\.Context:** Provides runtime information for your Lambda function invocation\. `ctx` is the variable you declare to leverage the information available via [AWS Lambda Context Object in Go](go-programming-model-context.md)\.
+  + **name MyEvent:** An input type with a variable name of `name` whose value will be returned in the `return` statement\.
+  + **string, error:** Returns standard [error](https://golang.org/pkg/builtin/#error) information\. For more information on custom error handling, see [AWS Lambda Function Errors in Go](go-programming-model-errors.md)\.
+  + **return fmt\.Sprintf\("Hello %s\!", name\), nil:** Simply returns a formatted "Hello" greeting with the name you supplied in the handler signature\. `nil` indicates there were no errors and the function executed successfully\.
++ **func main\(\):** The entry point that executes your Lambda function code\. This is required\.
 
   By adding `lambda.Start(HandleRequest)` between `func main(){}` code brackets, your Lambda function will be executed\.
 **Note**  
@@ -45,7 +45,7 @@ Per Go language standards, the opening bracket, `{` must be placed directly at e
 
 In the example above, the input type was a simple string\. But you can also pass in structured events to your function handler:
 
-```
+```go
 package main
  
 import (
@@ -147,7 +147,7 @@ You can declare and modify global variables that are independent of your Lambda 
 + [AWS Lambda Execution Context](running-lambda-code.md)
 + [Best Practices for Working with AWS Lambda Functions](best-practices.md)
 
-```
+```go
 package main
  
 import (
